@@ -1,0 +1,10 @@
+# Dockerignore for Churn AI Project
+**/node_modules
+**/venv
+**/.git
+**/__pycache__
+**/*.pyc
+**/dist
+**/.env
+**/db.sqlite3
+**/my-react-app

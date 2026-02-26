@@ -1,0 +1,25 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./db.sqlite3:/app/db.sqlite3
+    environment:
+      - DJANGO_DEBUG=False
+      - DJANGO_SECRET_KEY=production-secret-key-12345
+      - DJANGO_ALLOWED_HOSTS=*
+      - CORS_ALLOW_ALL_ORIGINS=True
+    restart: always
+
+  frontend:
+    build:
+      context: ./churnapp
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: always
